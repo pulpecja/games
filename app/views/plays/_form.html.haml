@@ -1,0 +1,10 @@
+.panel.panel-default
+  .panel-heading New play
+  .panel-body
+    = simple_form_for(@play, :html => { :class => 'horizontal-form' }) do |f|
+      = f.input :game, :collection => Game.all.order(:name), :include_blank => false, :input_html => {:class => 'form-control'}
+      = f.input :players, :input_html => {:class => 'form-control'}
+      / - 6.times do |i|
+      /   = f.input "player #{i+1}", :input_html => {:class => 'form-control'}, :required => false
+      %br
+      %button.btn.btn-default{:type => "submit"} Losuj

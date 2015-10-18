@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title Games
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    / Latest compiled and minified CSS
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", :rel => "stylesheet"}
+    / Optional theme
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css", :rel => "stylesheet"}
+    / Latest compiled and minified JavaScript
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
+  %body
+    .container
+      %br
+      - flash.each do |name, msg|
+        .alert.alert-main.alert-dismissable{:class => "alert-#{name == :notice ? 'success' : 'danger'}"}
+          %button.close{ :type => 'button', :'data-dismiss' => 'alert', :'aria-hidden' => 'true' } &times;
+          = msg
+
+      = yield

@@ -1,0 +1,19 @@
+.panel.panel-default
+  .panel-heading New game
+  .panel-body
+    = simple_nested_form_for(@game, :html => { :class => 'horizontal-form' }) do |f|
+      = f.input :name
+      = f.input :min_players
+      = f.input :max_players
+      .panel.panel-default
+        .panel-heading Races
+        .panel-body
+          .form-group
+            = f.fields_for :races do |r|
+              = r.input :name
+              = r.link_to_remove :class => 'close btn btn-default btn-sm', :data => { :confirm => 'Are you sure you want to remove this race?' } do
+                %small.glyphicon.glyphicon-remove
+
+            = f.link_to_add "Add new race", :races
+      .actions
+        = f.submit

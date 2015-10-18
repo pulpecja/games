@@ -1,0 +1,10 @@
+%h1.text-center
+  = chosen_game.name
+.row.text-center
+  - players_number.times do |i|
+    = players[i]
+    = "-"
+    = game_races[i]
+    %br
+
+
