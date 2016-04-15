@@ -10,6 +10,6 @@ class Play < ActiveRecord::Base
 
   belongs_to :game
 
-  validates :players, :numericality => { :greater_than => 0 }
+  validates :players, numericality: { greater_than: 0 }
 
 end

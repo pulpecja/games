@@ -17,16 +17,8 @@ module PlaysHelper
 
   def game_races
     unless @races
-      @races = chosen_game.races.map{ |race| race.name }.shuffle
+      @races = chosen_game.races.available(players_number).map{ |race| race.name }.shuffle
     end
     @races
-  end
-
-  def dupa
-    players_number.times do |i|
-      players[i]
-      "-"
-      game_races[i]
-    end
   end
 end

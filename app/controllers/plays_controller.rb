@@ -9,12 +9,12 @@ class PlaysController < ApplicationController
   end
 
   def create
-    @play = Play.new(play_params.merge(game_id: params["play"]["game"]))
+    @play = Play.new(play_params.merge(game_id: params[:play][:game]))
 
     if @play.valid?
       render 'plays/result'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
