@@ -19,5 +19,5 @@
         .alert.alert-main.alert-dismissable{ class: "alert-#{name == :notice ? 'success' : 'danger'}" }
           %button.close{ type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true' } &times;
           = msg
-
-      = yield
+      #main-content
+        = yield

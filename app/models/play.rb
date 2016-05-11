@@ -11,5 +11,14 @@ class Play < ActiveRecord::Base
   belongs_to :game
 
   validates :players, numericality: { greater_than: 0 }
+  validate :validate_players_number
+
+  def validate_players_number
+    if players > game.max_players
+      errors.add(:players, 'Zbyt duża liczba graczy')
+    elsif players < game.min_players
+      errors.add(:players, 'Zbyt mała liczba graczy')
+    end
+  end
 
 end

@@ -2,7 +2,7 @@
   .panel-heading Nowa rozgrywka
   .panel-body
     = simple_form_for(@play, html: { class: 'horizontal-form' }) do |f|
-      = f.input :game, collection: Game.all.order(:name), include_blank: false, input_html: { class: 'form-control' }
-      = f.input :players, input_html: { class: 'form-control' }
+      = f.input :game, label: 'Gra', collection: Game.all.order(:name), include_blank: false, input_html: { class: 'form-control' }
+      = f.input :players, label: 'Liczba graczy', input_html: { class: 'form-control' }
       %br
       %button.btn.btn-default{ type: "submit" } Losuj
