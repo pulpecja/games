@@ -1,22 +1,26 @@
-%h1 Games
-- @games.each do |game|
-  %div
-    = link_to "#{game.name}", game
-    %br
-    = game.min_players
-    = "-"
-    = game.max_players
-    Players
-    %br
-    Races:
-    = game.races.map(&:name).join(', ')
-    %br
-    %br
+.panel-heading Gry
+.panel-body
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Gra
+        %th Liczba graczy
+        %th Rasy
+        %th
+        %th
+    %tbody
+    - @games.each do |game|
+      %tr
+        %td= link_to "#{game.name}", game
+        %td
+          = game.min_players
+          = "-"
+          = game.max_players
+        %td= game.races.map(&:name).join(', ')
+        %td= link_to 'Zagraj!', new_play_path(game_id: game.id)
+        %td= link_to 'Edytuj', edit_game_path(game)
+        %td= link_to 'Usuń', game, method: :delete, data: { confirm: 'Czy jesteś pewny?' }
 
 
-  / # %td= link_to 'Edit', edit_game_path(game)
-  / # %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }
-
-
-%br
-  = link_to 'New Game', new_game_path
+  %br
+    = link_to 'Nowa gra', new_game_path

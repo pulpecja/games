@@ -5,19 +5,24 @@ class Play < ActiveRecord::Base
     columns << ActiveRecord::ConnectionAdapters::Column.new(name.to_s, default, sql_type.to_s, null)
   end
 
-  column :players, :integer
   column :game_id, :integer
+  column :players_names, :string
 
   belongs_to :game
 
-  validates :players, numericality: { greater_than: 0 }
   validate :validate_players_number
 
+  def players_number
+    players_names.split(',').length
+  end
+
+  private
+
   def validate_players_number
-    if players > game.max_players
-      errors.add(:players, 'Zbyt duża liczba graczy')
-    elsif players < game.min_players
-      errors.add(:players, 'Zbyt mała liczba graczy')
+    if players_number > game.max_players
+      errors.add(:players_names, 'Zbyt duża liczba graczy')
+    elsif players_number < game.min_players
+      errors.add(:players_names, 'Zbyt mała liczba graczy')
     end
   end
 

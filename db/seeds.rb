@@ -1,5 +1,5 @@
 game_of_thrones = Game.find_or_create_by(name: 'Gra o Tron', min_players: 3, max_players: 6)
-%w(Baratheon Start Lannister).each do |name|
+%w(Baratheon Stark Lannister).each do |name|
   Race.find_or_create_by(game_id: game_of_thrones.id, name: name)
 end
 Race.find_or_create_by(game_id: game_of_thrones.id, name: 'Greyjoy', start_from: 4)

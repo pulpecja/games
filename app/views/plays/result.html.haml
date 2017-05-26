@@ -1,10 +1,23 @@
-%h1.text-center
-  = chosen_game.name
-.row.text-center
-  - players_number.times do |i|
-    = players[i]
-    = "-"
-    = game_races[i]
-    %br
+.panel-heading Wyniki losowania
+.panel-body.text-center
+  %h1
+    = chosen_game.name
 
+  %br/
+  %table.table.table-striped#result-table
+    %thead
+      %tr
+        %th.text-center Gracz
+        %th.text-center Rasa
+    %tbody
+      - @players.each_with_index do |player, i|
+        %tr
+          %td= player
+          %td= game_races[i]
+
+  %br
+  %br
+  .row
+    Rozpoczyna:
+    %strong= @players.shuffle.first
 

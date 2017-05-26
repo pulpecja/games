@@ -1,19 +1,16 @@
-.panel.panel-default
-  .panel-heading Nowa gra
-  .panel-body
-    = simple_nested_form_for(@game, html: { class: 'horizontal-form' }) do |f|
-      = f.input :name,        label: 'Nazwa'
-      = f.input :min_players, label: 'Minimalna liczba graczy'
-      = f.input :max_players, label: 'Maksymalna liczba graczy'
-      .panel.panel-default
-        .panel-heading Rasy
-        .panel-body
-          .form-group
-            = f.fields_for :races do |r|
-              = r.input :name, label: 'Nazwa'
-              = r.link_to_remove class: 'close btn btn-default btn-sm', data: { confirm: 'Czy na pewno chcesz usunąć tę rasę?' } do
-                %small.glyphicon.glyphicon-remove
+= simple_nested_form_for(@game) do |f|
+  = f.input :name,        label: 'Nazwa'
+  = f.input :min_players, label: 'Minimalna liczba graczy'
+  = f.input :max_players, label: 'Maksymalna liczba graczy'
+  .panel.panel-default
+    .panel-heading Rasy
+    .panel-body
+      .form-group
+        = f.fields_for :races do |r|
+          = r.input :name, label: 'Nazwa'
+          = r.link_to_remove class: 'close btn btn-default btn-sm', data: { confirm: 'Czy na pewno chcesz usunąć tę rasę?' } do
+            %small.glyphicon.glyphicon-remove
 
-            = f.link_to_add "Dodaj nowa rasę", :races
-      .actions
-        = f.submit 'Dodaj grę'
+        = f.link_to_add "Dodaj nowa rasę", :races
+  .actions
+    = f.submit 'Dodaj grę'

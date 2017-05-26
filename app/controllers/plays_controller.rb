@@ -1,15 +1,15 @@
 class PlaysController < ApplicationController
-  before_filter :sanitize_params
 
   def index
   end
 
   def new
-    @play = Play.new
+    @play = Play.new(game_id: params[:game_id])
   end
 
   def create
-    @play = Play.new(play_params.merge(game_id: params[:play][:game]))
+    @play = Play.new(play_params)
+    @players = @play.players_names.split(',')
 
     if @play.valid?
       render 'plays/result'
@@ -19,12 +19,8 @@ class PlaysController < ApplicationController
   end
 
   private
-    def play_params
-      params[:play].permit(:players)
-    end
-
-    def sanitize_params
-      params[:game] = params[:game].to_i
-    end
+  def play_params
+    params[:play].permit(:players_names, :game_id)
+  end
 
 end

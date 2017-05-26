@@ -1,0 +1,15 @@
+%header.navbar.navbar-inverse.navbar-static-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{ type: 'button', 'data-target' => '.main-navbar-collapse', 'data-toggle' => 'collapse' }
+        - 3.times do
+          %span.glyphicon.glyphicon-bar
+      = link_to 'Strona główna', root_path, class: 'navbar-brand logo-font'
+    %nav.collapse.navbar-collapse.main-navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to games_path do
+            %i.fa.fa-gears
+            Gry
+
+
